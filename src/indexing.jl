@@ -169,13 +169,13 @@ methods to this function.
 Add a method for indexing into an `Axis{name, SortedSet}`:
 
 ```julia
-AxisArrays.axisindexes(::Type{Categorical}, ax::SortedSet, idx::AbstractVector) = findin(collect(ax), idx)
+AxisArrays.axisindexes(::Type{Categorical}, ax::SortedSet, idx::AbstractVector) = findall(in(idx), collect(ax))
 ```
 
 Add a method for indexing into a `Categorical` axis with a `SortedSet`:
 
 ```julia
-AxisArrays.axisindexes(::Type{Categorical}, ax::AbstractVector, idx::SortedSet) = findin(ax, idx)
+AxisArrays.axisindexes(::Type{Categorical}, ax::AbstractVector, idx::SortedSet) = findall(in(idx), ax)
 ```
 """
 axisindexes(ax, idx) = axisindexes(axistrait(ax.val), ax.val, idx)
